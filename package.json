@@ -12,8 +12,11 @@
     "@rushstack/eslint-patch": "^1.1.4",
     "axios": "^0.27.0",
     "chart.js": "^3.6.0",
+    "nprogress": "^0.2.0",
     "numeral": "^2.0.6",
-    "pinia": "^2.0.13",
+    "pinia": "^2.0.30",
+    "postcss-nesting": "^11.1.0",
+    "postcss-scss": "^4.0.6",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },
