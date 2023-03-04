@@ -1,1 +1,2 @@
-export const API_URL = process.env.VUE_API_URL;
+export const API_URL = import.meta.env.VUE_API_URL;
+export const STYLE_KEY = "style";

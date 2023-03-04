@@ -2,8 +2,8 @@
 import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import menuAside from "@/menuAside.js";
-import menuNavBar from "@/menuNavBar.js";
+import { adminSidebar } from "@/utils/sidebar";
+import { adminNavbar } from "@/utils/navbar";
 import { useMainStore } from "@/stores/main.js";
 import { useStyleStore } from "@/stores/style.js";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -35,24 +35,17 @@ router.beforeEach(() => {
 });
 
 const menuClick = (event, item) => {
-    if (item.isToggleLightDark) {
-        styleStore.setDarkMode();
-    }
 
-    if (item.isLogout) {
-        //
-    }
 };
 </script>
 
 <template>
-    <div :class="{
-        dark: styleStore.darkMode,
+    <div :class="[styleStore.mainColor, {
         'overflow-hidden lg:overflow-visible': isAsideMobileExpanded,
-    }">
+    }]">
         <div :class="[layoutAsidePadding, { 'ml-60 lg:ml-0': isAsideMobileExpanded }]"
             class="pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
-            <NavBar :menu="menuNavBar" :class="[
+            <NavBar :menu="adminNavbar" :class="[
                 layoutAsidePadding,
                 { 'ml-60 lg:ml-0': isAsideMobileExpanded },
             ]" @menu-click="menuClick">
@@ -68,7 +61,7 @@ const menuClick = (event, item) => {
                 </NavBarItemPlain>
             </NavBar>
             <AsideMenu :is-aside-mobile-expanded="isAsideMobileExpanded" :is-aside-lg-active="isAsideLgActive"
-                :menu="menuAside" @menu-click="menuClick" @aside-lg-close-click="isAsideLgActive = false" />
+                :menu="adminSidebar" @menu-click="menuClick" @aside-lg-close-click="isAsideLgActive = false" />
             <router-view></router-view>
             <FooterBar>
                 Get more with

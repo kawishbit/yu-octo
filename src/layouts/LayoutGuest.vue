@@ -5,7 +5,7 @@ const styleStore = useStyleStore();
 </script>
 
 <template>
-  <div :class="{ dark: styleStore.darkMode }">
+  <div :class="styleStore.mainColor">
     <div class="bg-gray-50 dark:bg-slate-800 dark:text-slate-100">
       <router-view></router-view>
     </div>

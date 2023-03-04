@@ -7,7 +7,7 @@ import LayoutGuest from "@/layouts/LayoutGuest.vue";
 </script>
 
 <template>
-  <SectionFullScreen v-slot="{ cardClass }" bg="pinkRed">
+  <SectionFullScreen v-slot="{ cardClass }">
     <CardBox :class="cardClass">
       <div class="space-y-3">
         <h1 class="text-2xl">Unhandled exception</h1>

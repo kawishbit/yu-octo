@@ -27,10 +27,9 @@ export const useMainStore = defineStore("main", {
         this.userAvatar = payload.avatar;
       }
     },
-
     fetch(sampleDataKey) {
       axios
-        .get(`@/data-sources/${sampleDataKey}.json`)
+        .get(`@/assets/seeds/${sampleDataKey}.json`)
         .then((r) => {
           if (r.data && r.data.data) {
             this[sampleDataKey] = r.data.data;

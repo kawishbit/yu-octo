@@ -1,5 +1,5 @@
 <script setup>
-import { colorsText, colorsBgLight } from "@/colors.js";
+import { colorsText, colorsBgLight } from "@/utils/colors";
 import BaseIcon from "@/components/BaseIcon.vue";
 
 defineProps({
@@ -24,16 +24,9 @@ defineProps({
 </script>
 
 <template>
-  <BaseIcon
-    :path="icon"
-    :w="w"
-    :h="h"
-    size="24"
-    class="rounded-full"
-    :class="
-      bg
-        ? colorsBgLight[color]
-        : [colorsText[color], 'bg-gray-50 dark:bg-slate-800']
-    "
-  />
+  <BaseIcon :path="icon" :w="w" :h="h" size="24" class="rounded-full" :class="
+  bg
+    ? colorsBgLight[color]
+    : [colorsText[color], 'bg-gray-50 dark:bg-slate-800']
+  " />
 </template>

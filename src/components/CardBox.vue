@@ -2,7 +2,9 @@
 import { computed, useSlots } from "vue";
 import CardBoxComponentBody from "@/components/CardBoxComponentBody.vue";
 import CardBoxComponentFooter from "@/components/CardBoxComponentFooter.vue";
+import { useStyleStore } from "@/stores/style";
 
+const styleStore = useStyleStore();
 const props = defineProps({
   rounded: {
     type: String,
@@ -45,12 +47,8 @@ const submit = (event) => {
 </script>
 
 <template>
-  <component
-    :is="isForm ? 'form' : 'div'"
-    :class="componentClass"
-    class="bg-white flex"
-    @submit="submit"
-  >
+  <component :is="isForm ? 'form' : 'div'" :class="[componentClass, useStyleStore]" class="bg-white flex"
+    @submit="submit">
     <slot v-if="hasComponentLayout" />
     <template v-else>
       <CardBoxComponentBody :no-padding="hasTable">

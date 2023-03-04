@@ -35,8 +35,8 @@ const styleStore = useStyleStore();
 const componentClass = computed(() => {
   const base = [
     isDropdownActive.value
-      ? `${styleStore.navBarItemLabelActiveColorStyle} dark:text-slate-400`
-      : `${styleStore.navBarItemLabelStyle} dark:text-white dark:hover:text-slate-400 ${styleStore.navBarItemLabelHoverStyle}`,
+      ? `${styleStore.navBarItemLabelActiveColor} dark:text-slate-400`
+      : `${styleStore.navBarItemLabel} dark:text-white dark:hover:text-slate-400 ${styleStore.navBarItemLabelHover}`,
     props.item.menu ? "lg:py-2 lg:px-3" : "py-2 px-3",
   ];
 
@@ -88,45 +88,25 @@ onBeforeUnmount(() => {
 
 <template>
   <BaseDivider v-if="item.isDivider" nav-bar />
-  <component
-    :is="is"
-    v-else
-    ref="root"
-    class="block lg:flex items-center relative cursor-pointer"
-    :class="componentClass"
-    :to="item.to ?? null"
-    :href="item.href ?? null"
-    :target="item.target ?? null"
-    @click="menuClick"
-  >
-    <div
-      class="flex items-center"
-      :class="{
-        'bg-gray-100 dark:bg-slate-800 lg:bg-transparent lg:dark:bg-transparent p-3 lg:p-0':
-          item.menu,
-      }"
-    >
-      <UserAvatarCurrentUser
-        v-if="item.isCurrentUser"
-        class="w-6 h-6 mr-3 inline-flex"
-      />
+  <component :is="is" v-else ref="root" class="block lg:flex items-center relative cursor-pointer"
+    :class="componentClass" :to="item.to ?? null" :href="item.href ?? null" :target="item.target ?? null"
+    @click="menuClick">
+    <div class="flex items-center" :class="{
+      'bg-gray-100  dark:bg-slate-800 lg:bg-transparent lg:dark:bg-transparent p-3 lg:p-0':
+        item.menu,
+    }">
+      <UserAvatarCurrentUser v-if="item.isCurrentUser" class="w-6 h-6 mr-3 inline-flex" />
       <BaseIcon v-if="item.icon" :path="item.icon" class="transition-colors" />
-      <span
-        class="px-2 transition-colors"
-        :class="{ 'lg:hidden': item.isDesktopNoLabel && item.icon }"
-        >{{ itemLabel }}</span
-      >
-      <BaseIcon
-        v-if="item.menu"
-        :path="isDropdownActive ? mdiChevronUp : mdiChevronDown"
-        class="hidden lg:inline-flex transition-colors"
-      />
+      <span v-if="itemLabel" class="px-2 transition-colors"
+        :class="{ 'lg:hidden': item.isDesktopNoLabel && item.icon }">{{
+          itemLabel
+        }}</span>
+      <BaseIcon v-if="item.menu" :path="isDropdownActive ? mdiChevronUp : mdiChevronDown"
+        class="hidden lg:inline-flex transition-colors" />
     </div>
-    <div
-      v-if="item.menu"
-      class="text-sm border-b border-gray-100 lg:border lg:bg-white lg:absolute lg:top-full lg:left-0 lg:min-w-full lg:z-20 lg:rounded-lg lg:shadow-lg lg:dark:bg-slate-800 dark:border-slate-700"
-      :class="{ 'lg:hidden': !isDropdownActive }"
-    >
+    <div v-if="item.menu"
+      class="text-sm border-b min-w-full border-gray-100 lg:border lg:bg-white lg:absolute lg:top-full  lg:z-20 lg:rounded-lg lg:shadow-lg lg:dark:bg-slate-800 dark:border-slate-700"
+      :class="{ 'lg:hidden': !isDropdownActive, 'lg:right-0 lg:w-72': !item.isCurrentUser, 'lg:left-0 lg:min-w-52': item.isCurrentUser }">
       <NavBarMenuList :menu="item.menu" @menu-click="menuClickDropdown" />
     </div>
   </component>

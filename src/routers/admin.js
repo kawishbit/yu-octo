@@ -12,7 +12,7 @@ export const adminRoutes = [
           {
             path: "login",
             name: "admin-login",
-            component: () => import("@/views/LoginView.vue"),
+            component: () => import("@/views/admin/LoginView.vue"),
           },
         ],
       },
@@ -27,7 +27,7 @@ export const adminRoutes = [
           {
             path: "dashboard",
             name: "admin-dashboard",
-            component: () => import("@/views/DashboardView.vue"),
+            component: () => import("@/views/admin/DashboardView.vue"),
           },
         ],
       },

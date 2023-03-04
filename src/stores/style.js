@@ -1,56 +1,37 @@
 import { defineStore } from "pinia";
-import * as styles from "@/styles";
-import { darkModeKey, styleKey } from "@/config";
+import * as styles from "@/utils/styles";
+import { STYLE_KEY } from "@/utils/constant";
 
 export const useStyleStore = defineStore("style", {
   state: () => ({
-    /* Styles */
-    asideStyle: "",
-    asideScrollbarsStyle: "",
-    asideBrandStyle: "",
-    asideMenuItemStyle: "",
-    asideMenuItemActiveStyle: "",
-    asideMenuDropdownStyle: "",
-    navBarItemLabelStyle: "",
-    navBarItemLabelHoverStyle: "",
-    navBarItemLabelActiveColorStyle: "",
-    overlayStyle: "",
-
-    /* Dark mode */
-    darkMode: false,
+    mainColorIndex: 0,
+    mainColor: "",
+    mainGradient: "",
+    cardBoxBg: "",
+    aside: "",
+    asideScrollbars: "",
+    asideBrand: "",
+    asideLogo: "",
+    asideMenuItem: "",
+    asideMenuItemActive: "",
+    asideMenuDropdown: "",
+    navBarItemLabel: "",
+    navBarItemLabelHover: "",
+    navBarItemLabelActiveColor: "",
+    overlay: "",
   }),
   actions: {
     setStyle(payload) {
       if (!styles[payload]) {
         return;
       }
-
       if (typeof localStorage !== "undefined") {
-        localStorage.setItem(styleKey, payload);
+        localStorage.setItem(STYLE_KEY, payload);
       }
 
       const style = styles[payload];
-
       for (const key in style) {
-        this[`${key}Style`] = style[key];
-      }
-    },
-
-    setDarkMode(payload = null) {
-      this.darkMode = payload !== null ? payload : !this.darkMode;
-
-      if (typeof localStorage !== "undefined") {
-        localStorage.setItem(darkModeKey, this.darkMode ? "1" : "0");
-      }
-
-      if (typeof document !== "undefined") {
-        document.body.classList[this.darkMode ? "add" : "remove"](
-          "dark-scrollbars"
-        );
-
-        document.documentElement.classList[this.darkMode ? "add" : "remove"](
-          "dark-scrollbars-compat"
-        );
+        this[key] = style[key];
       }
     },
   },

@@ -12,7 +12,7 @@ export const docentRoutes = [
           {
             path: "login",
             name: "docent-login",
-            component: () => import("@/views/LoginView.vue"),
+            component: () => import("@/views/docent/LoginView.vue"),
           },
         ],
       },
@@ -27,7 +27,7 @@ export const docentRoutes = [
           {
             path: "dashboard",
             name: "docent-dashboard",
-            component: () => import("@/views/DashboardView.vue"),
+            component: () => import("@/views/docent/DashboardView.vue"),
           },
         ],
       },

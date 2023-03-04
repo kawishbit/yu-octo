@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { RouterLink } from "vue-router";
-import { getButtonColor } from "@/colors.js";
+import { getButtonColor } from "@/utils/colors";
 import BaseIcon from "@/components/BaseIcon.vue";
 
 const props = defineProps({
@@ -109,15 +109,8 @@ const componentClass = computed(() => {
 </script>
 
 <template>
-  <component
-    :is="is"
-    :class="componentClass"
-    :href="href"
-    :type="computedType"
-    :to="to"
-    :target="target"
-    :disabled="disabled"
-  >
+  <component :is="is" :class="componentClass" :href="href" :type="computedType" :to="to" :target="target"
+    :disabled="disabled">
     <BaseIcon v-if="icon" :path="icon" :size="iconSize" />
     <span v-if="label" :class="labelClass">{{ label }}</span>
   </component>

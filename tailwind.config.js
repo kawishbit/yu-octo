@@ -47,9 +47,9 @@ module.exports = {
       matchUtilities(
         {
           "aside-scrollbars": (value) => {
-            const track = value === "light" ? "100" : "900";
-            const thumb = value === "light" ? "300" : "600";
-            const color = value === "light" ? "gray" : value;
+            const track = value === "light" ? "900" : "100";
+            const thumb = value === "light" ? "600" : "300";
+            const color = value === "light" ? value : "gray";
 
             return {
               scrollbarWidth: "thin",

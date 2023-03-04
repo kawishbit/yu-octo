@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { colorsBgLight, colorsOutline } from "@/colors.js";
+import { colorsBgLight, colorsOutline } from "@/utils/colors";
 import PillTagPlain from "@/components/PillTagPlain.vue";
 
 const props = defineProps({
@@ -27,11 +27,5 @@ const componentClass = computed(() => [
 </script>
 
 <template>
-  <PillTagPlain
-    class="border rounded-full"
-    :class="componentClass"
-    :icon="icon"
-    :label="label"
-    :small="small"
-  />
+  <PillTagPlain class="border rounded-full" :class="componentClass" :icon="icon" :label="label" :small="small" />
 </template>
