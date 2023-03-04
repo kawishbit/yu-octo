@@ -1,12 +1,17 @@
 <script setup>
+import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStyleStore } from "@/stores/style.js";
 import { gradientBgDark } from "@/utils/colors";
 import SectionMain from "@/components/SectionMain.vue";
 import CardBox from "@/components/CardBox.vue";
+import notie from "@/plugins/notie";
 
 
 const styleStore = useStyleStore();
+onMounted(() => {
+    notie.alert({ type: 4, text: 'The website is still in development, and some functionality is not ready yet.', stay: true });
+});
 
 const router = useRouter();
 </script>

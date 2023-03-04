@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, defineEmits } from "vue";
+import { reactive, defineEmits, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { mdiAccount, mdiAsterisk } from "@mdi/js";
 import SectionFullScreen from "@/components/SectionFullScreen.vue";
@@ -12,6 +12,7 @@ import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutGuest from "@/layouts/LayoutGuest.vue";
 import Logo from "@/components/Logo.vue";
 import { useStyleStore } from "@/stores/style";
+import notie from "@/plugins/notie";
 
 const emit = defineEmits(['submit']);
 const styleStore = useStyleStore();
@@ -27,6 +28,10 @@ const router = useRouter();
 const submit = () => {
     emit("submit", form);
 };
+
+onMounted(() => {
+    notie.alert({ type: 4, text: 'The website is still in development, and some functionality is not ready yet.', stay: true });
+});
 </script>
 
 <template>
